@@ -1,0 +1,23 @@
+openapi: 3.0.0
+info:
+  title: Reference
+  description: >-
+    This is a test description
+  version: 2.0.0
+  contact:
+    name: Aurora Solar Support
+    email: support@aurorasolar.com
+servers:
+  - url: https://api-sandbox.aurorasolar.com/v2
+    description: Sandbox Environment
+paths:
+  "/item/endpoint":
+    get:
+      tags:
+        - Item
+      summary: Retrieve Item
+      description: Returns metadata about your item.
+      operationId: retrieveItem
+      responses:
+        "200":
+          description: "Item successfully retrieved."
