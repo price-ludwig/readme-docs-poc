@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.0.2
 info:
   title: Reference
   description: >-
@@ -10,14 +10,112 @@ info:
 servers:
   - url: https://api-sandbox.aurorasolar.com/v2
     description: Sandbox Environment
+tags:
+  - name: Item
+    description: "Hello! this is a test description"
 paths:
   "/item/endpoint":
     get:
       tags:
         - Item
       summary: Retrieve Item
-      description: Returns metadata about your item.
+      description: |
+        [block:callout]
+        {
+          "type": "info",
+          "body": "This endpoint is not provisioned by default in all tenants. For availability, please contact your Aurora account team."
+        }
+        [/block]
+        Note that this is an asynchronous endpoint. See the [Asynchronous Endpoints](ref:asynchronous-endpoints) appendix for more info.
+        
+        There are currently 2 run modes available for AutoDesigner:
+        
+        - `max_fit`:  Places the maximum number of panels possible within the constraints passed in through `placement_options`.
+          - Only takes `solar_panels` in the `components` input parameter, will ignore other components.
+        
+        - `energy`:  Places components to generate energy production that is as close as possible to the `target` field (in kWh) within the constraints passed in through `placement_options` 
+          - Will ignore `min_sap` and `min_tsrf` for the `placement_options` input parameter in this mode.
+        
+        In order to find the IDs for `components` to use, you need to use the Aurora application. Go to https://app.aurorasolar.com/database for a list of all components, or:
+        
+        - Solar Panels: https://app.aurorasolar.com/database/solar-panels
+        
+        - Inverters / Micro Inverters: https://app.aurorasolar.com/database/solar-inverters
+        
+        - DC Optimizers: https://app.aurorasolar.com/database/dc-optimizers
+        
+        Click on a component and the ID will be included in the URL. Ex:
+        [block:image]
+        {
+          "images": [
+            {
+              "image": [
+                "https://files.readme.io/44cf146-Screen_Shot_2021-06-11_at_12.56.20_PM.png",
+                "Screen Shot 2021-06-11 at 12.56.20 PM.png",
+                1844,
+                1708,
+                "#ededed"
+              ]
+            }
+          ]
+        }
+        [/block]
       operationId: retrieveItem
       responses:
         "200":
-          description: "Item successfully retrieved."
+          description: "sample description"
+  "/item/another_endpoint":
+    get:
+      tags:
+        - Item
+      summary: Retrieve Another Item
+      description: |
+        # Heading
+    
+        Text attributes _italic_, *italic*, __bold__, **bold**, `monospace`.
+    
+        Horizontal rule:
+    
+        ---
+    
+        Bullet list:
+    
+          * apples
+          * oranges
+          * pears
+    
+        Numbered list:
+    
+          1. apples
+          2. oranges
+          3. pears
+    
+        A [link](http://example.com).
+    
+        An image:
+        ![Swagger logo](https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/favicon-32x32.png)
+    
+        Code block:
+    
+        ```
+        {
+          "message": "Hello, world!"
+        }
+        ```
+        
+        [block:callout]
+        {
+          "type": "info",
+          "body": "This endpoint is not provisioned by default in all tenants. For availability, please contact your Aurora account team."
+        }
+        [/block]
+    
+        Tables:
+    
+        | Column1 | Column2 |
+        | ------- | --------|
+        | cell1   | cell2   |
+      operationId: retrieveAnotherItem
+      responses:
+        "200":
+          description: "sample description"
